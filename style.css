@@ -4,9 +4,9 @@
   --clr-accent-300: #FFD402;
   --clr-accent-100: #88BD24;
 
-  --clr-primary-400: #291D11;
+  --clr-primary-400: #252525;
 
-  --clr-neutral-900: #1d1e25;
+  --clr-neutral-900: #151515;
   --clr-neutral-100: #ffffff;
 
   --ff-primary: "Poppins", sans-serif;
@@ -16,6 +16,7 @@
 
   --fw-light: 200;
   --fw-regular: 400;
+  --fw-semi-bold: 500;
   --fw-bold: 700;
 
   --fs-300: 0.8125rem;
@@ -86,6 +87,7 @@ Utility classes
 
 .even-columns {
   display: grid;
+  grid-template-columns: 1fr 1fr;
   align-items: center;
   gap: 1rem;
 }
@@ -101,10 +103,14 @@ Utility classes
   text-align: right;
 }
 
-@media (min-width: 50em) {
+@media (max-width: 50em) {
   .even-columns {
-    grid-auto-flow: column;
-    grid-auto-columns: 1fr;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .padding-block-600 {
+    padding-block: var(--size-600);
   }
 }
 
@@ -126,31 +132,63 @@ Header & Nav
   width: 15em;
 }
 
-.nav-list {
+#hamitems {
   display: flex;
   font-size: var(--fs-nav);
-  font-weight: var(--fw-bold);
+  font-weight: var(--fw-semi-bold);
   gap: clamp(var(--size-400), 5vw, var(--size-700));
 }
 
-.nav-list a {
+#hamitems a {
+  flex-grow: 1;
+  flex-basis: 0;
+  padding: 10px;
+  color: var(--clr-neutral-900);
   text-decoration: none;
-  color: var(--clr-primary-400);
+  text-align: right;
 }
-
-.nav-list a:hover {
-  font-weight: 700;
-}
-
-.nav-list a:hover {
+#hamitems a:hover {
   color: var(--clr-accent-100);
+  }
+
+#hamnav label, #hamburger {
+  display: none;
 }
 
 @media (max-width: 50em) {
-  .navigation {
+.nav-wrapper {
+  align-items:flex-start;
+}
+
+.login-btn {
+  display: none;
+}
+
+#hamitems a {
+  box-sizing: border-box;
+  display: block;
+  width: 100%;
+  border-top: 1px solid #333;
+}
+ 
+#hamnav label { 
+  display: flex;
+  justify-content: right; 
+  color: var(--clr-primary-400);
+  font-size: var(--fs-800);
+  line-height: 1;
+}
+
+  #hamitems {
     display: none;
   }
+  #hamnav input:checked ~ #hamitems {
+    display: block;
+  }
 }
+
+
+
 
 /* ==============
 Main
@@ -170,7 +208,6 @@ Main
   line-height: 1.2;
 }
 
-
 .text {
   max-width: 45ch;
   margin: 1em 0;
@@ -178,7 +215,7 @@ Main
 
 .main-img {
   background-color: var(--clr-accent-300);
-  border-radius: 3em;
+  border-radius: 1em;
 }
 
 #contact {
@@ -187,8 +224,6 @@ Main
   justify-content: center;
   align-items: center;
   text-align: center;
-
-
 }
 
 .rocket {
@@ -196,16 +231,28 @@ Main
 }
 
 @media (max-width: 50em) {
-
-  .nav-items {
-    display: none;
+  .logo {
+    width: 10em;
   }
 
-  .even-columns {
-    display: flex;
-    flex-direction: column;
-
+  .primary-heading, .secondary-heading {
+    font-size: var(--fs-700);
+    font-weight: var(--fw-semi-bold);
   }
+
+  .mobile-img {
+    margin-inline: auto;
+    width: 80%;
+  }
+
+  .ideas, .main-img, .video {
+    order: -1;
+  }
+
+  .player {
+    width: 90vw;
+  }
+
 }
 
 /* ==============
